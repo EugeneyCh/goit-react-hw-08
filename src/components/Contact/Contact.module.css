@@ -1,0 +1,30 @@
+.contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 270px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    margin-right: 8px;
+    color: #555;
+}
+
+button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d32f2f;
+}
