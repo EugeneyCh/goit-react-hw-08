@@ -1,19 +1,66 @@
+import { Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { loginThunk } from "../../redux/auth/operations";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import s from "./Login.module.css";
 
+const applySchema = Yup.object().shape({
+  email: Yup.string()
+    .required("Це поле обов'язкове!")
+    .min(3, "Мінімум 3 символи!")
+    .max(50, "Максимум 20 символів!"),
+  password: Yup.string()
+    .required("Це поле обов'язкове!")
+    .min(3, "Мінімум 3 символи!")
+    .max(50, "Максимум 20 символів!"),
+});
+
 const Login = () => {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleSubmit = (values, options) => {
+    console.log(values);
+    dispatch(loginThunk(values))
+      .unwrap()
+      .then((res) => {
+        toast.success(`Welcome, ${res.user.email}`);
+        navigate("/contacts", { replace: true });
+      })
+      .catch(() => toast.error("Invalid data"));
+
+    options.resetForm();
+  };
   return (
     <div className={s.login}>
-      <h1>Login</h1>
-      <form method="post">
-        <input type="text" name="u" placeholder="Username" required />
-        <input type="password" name="p" placeholder="Password" required />
-        <button
-          type="submit"
-          className={`${s.btn} ${s.btnPrimary} ${s.btnBlock} ${s.btnLarge}`}
-        >
-          Let me in.
-        </button>
-      </form>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={applySchema}
+      >
+        <Form className="form">
+          <h1>Login</h1>
+          <label>
+            <span>Email:</span>
+            <Field name="email" type="email" />
+          </label>
+          <label>
+            <span>Password:</span>
+            <Field name="password" type="password" />
+          </label>
+          <button
+            className={`${s.btn} ${s.btnPrimary} ${s.btnBlock} ${s.btnLarge}`}
+            type="submit"
+          >
+            Login
+          </button>
+        </Form>
+      </Formik>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   return (
     <header>
-      <h2>Auth</h2>
+      <h2>Phonebook</h2>
       {user.name && <h3>{user.email}</h3>}
       <nav className={s.nav}>
         <NavLink
