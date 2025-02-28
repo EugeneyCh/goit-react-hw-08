@@ -1,6 +1,13 @@
 h2 {
     color: white;
     font-size: 32px;
+    text-align: center;
+}
+
+h3 {
+    color: white;
+    font-size: 28px;
+    text-align: right;
 }
 
 .link {
@@ -11,6 +18,7 @@ h2 {
 
 .nav {
     display: flex;
+    justify-content: right;
     gap: 20px;
 }
 

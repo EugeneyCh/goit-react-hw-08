@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import s from "./Login.module.css";
 
@@ -59,6 +59,9 @@ const Login = () => {
           >
             Login
           </button>
+          <p>
+            No account? <Link to="/register">Register</Link>
+          </p>
         </Form>
       </Formik>
     </div>

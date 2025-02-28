@@ -8,6 +8,7 @@ import SearchBox from "../SearchBox/SearchBox";
 
 function ContactList() {
   const filteredContacts = useSelector(selectFilteredContacts);
+  console.log(filteredContacts);
 
   return (
     <div>

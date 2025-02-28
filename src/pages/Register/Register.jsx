@@ -2,9 +2,10 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/auth/operations";
-// import { useNavigate } from "react-router-dom";
-// import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import s from "./Register.module.css";
+import { Link } from "react-router-dom";
 
 const applySchema = Yup.object().shape({
   name: Yup.string()
@@ -27,17 +28,17 @@ const Register = () => {
     name: "",
     password: "",
   };
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = (values, options) => {
     console.log(values);
-    dispatch(registerThunk(values));
-    // .unwrap()
-    // .then((res) => {
-    // toast.success(`Welcome, ${res.user.email}`);
-    // navigate("/contacts", { replace: true });
-    // })
-    // .catch(() => toast.error("Invalid data"));
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then((res) => {
+        toast.success(`Welcome, ${res.user.email}`);
+        navigate("/contacts", { replace: true });
+      })
+      .catch(() => toast.error("Invalid data"));
 
     options.resetForm();
   };
@@ -68,6 +69,9 @@ const Register = () => {
           >
             Register
           </button>
+          <p>
+            Do you have an account? <Link to="/login">Login</Link>
+          </p>
         </Form>
       </Formik>
     </div>

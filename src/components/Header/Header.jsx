@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header>
       <h2>Phonebook</h2>
-      {user.name && <h3>{user.email}</h3>}
+      {user.name && <h3>Welcome {user.name} !</h3>}
       <nav className={s.nav}>
         <NavLink
           className={({ isActive }) => clsx(s.link, isActive && s.active)}
