@@ -29,7 +29,7 @@ const Login = () => {
     dispatch(loginThunk(values))
       .unwrap()
       .then((res) => {
-        toast.success(`Welcome, ${res.user.email}`);
+        toast.success(`Welcome, ${res.user.name}`);
         navigate("/contacts", { replace: true });
       })
       .catch(() => toast.error("Invalid data"));
