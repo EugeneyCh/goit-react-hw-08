@@ -33,8 +33,8 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/HomePage/Home";
 import Contacts from "./pages/ContactsPage/ContactsPage";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
+import Login from "./pages/LoginPage/LoginPage";
+import Register from "./pages/RegisterPage/RegisterPage";
 import NotFound from "./pages/NotFound/NotFound";
 import Layout from "./components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";

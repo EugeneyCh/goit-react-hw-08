@@ -1,12 +1,17 @@
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { loginThunk } from "../../redux/auth/operations";
-import { Link, useNavigate } from "react-router-dom";
+import { registerThunk } from "../../redux/auth/operations";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import s from "./Login.module.css";
+import s from "./RegisterPage.module.css";
+import { Link } from "react-router-dom";
 
 const applySchema = Yup.object().shape({
+  name: Yup.string()
+    .required("Це поле обов'язкове!")
+    .min(3, "Мінімум 3 символи!")
+    .max(50, "Максимум 20 символів!"),
   email: Yup.string()
     .required("Це поле обов'язкове!")
     .min(3, "Мінімум 3 символи!")
@@ -17,18 +22,20 @@ const applySchema = Yup.object().shape({
     .max(50, "Максимум 20 символів!"),
 });
 
-const Login = () => {
+const Register = () => {
   const initialValues = {
     email: "",
+    name: "",
     password: "",
   };
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = (values, options) => {
-    dispatch(loginThunk(values))
+    console.log(values);
+    dispatch(registerThunk(values))
       .unwrap()
       .then((res) => {
-        toast.success(`Welcome, ${res.user.name}`);
+        toast.success(`Welcome, ${res.user.email}`);
         navigate("/contacts", { replace: true });
       })
       .catch(() => toast.error("Invalid data"));
@@ -43,7 +50,11 @@ const Login = () => {
         validationSchema={applySchema}
       >
         <Form className="form">
-          <h1>Login</h1>
+          <h1>Register</h1>
+          <label>
+            <span>Name:</span>
+            <Field name="name" />
+          </label>
           <label>
             <span>Email:</span>
             <Field name="email" type="email" />
@@ -56,10 +67,10 @@ const Login = () => {
             className={`${s.btn} ${s.btnPrimary} ${s.btnBlock} ${s.btnLarge}`}
             type="submit"
           >
-            Login
+            Register
           </button>
           <p>
-            No account? <Link to="/register">Register</Link>
+            Do you have an account? <Link to="/login">Login</Link>
           </p>
         </Form>
       </Formik>
@@ -67,4 +78,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
