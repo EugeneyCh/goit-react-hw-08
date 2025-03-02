@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import s from "./RegisterPage.module.css";
+import s from "./RegisterForm.module.css";
 import { Link } from "react-router-dom";
 
 const applySchema = Yup.object().shape({
@@ -22,7 +22,7 @@ const applySchema = Yup.object().shape({
     .max(50, "Максимум 20 символів!"),
 });
 
-const Register = () => {
+const RegisterForm = () => {
   const initialValues = {
     email: "",
     name: "",
@@ -78,4 +78,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterForm;

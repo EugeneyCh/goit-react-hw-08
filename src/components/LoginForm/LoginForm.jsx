@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import s from "./LoginPage.module.css";
+import s from "./LoginForm.module.css";
 
 const applySchema = Yup.object().shape({
   email: Yup.string()
@@ -17,7 +17,7 @@ const applySchema = Yup.object().shape({
     .max(50, "Максимум 20 символів!"),
 });
 
-const Login = () => {
+const LoginForm = () => {
   const initialValues = {
     email: "",
     password: "",
@@ -67,4 +67,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
