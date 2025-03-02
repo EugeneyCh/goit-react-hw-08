@@ -8,6 +8,7 @@ function SearchBox() {
     <div className={s.container}>
       <p>Find contacts by name or number</p>
       <input
+        className={s.input}
         type="text"
         onChange={(e) => dispatch(changeFilter(e.target.value))}
         placeholder="Search..."

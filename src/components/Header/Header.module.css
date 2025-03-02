@@ -26,3 +26,18 @@ h3 {
     color: red;
     text-decoration: underline;
 }
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+}
+
+.greetings {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 500px;
+}

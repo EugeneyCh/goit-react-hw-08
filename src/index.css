@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -28,12 +28,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
   background: linear-gradient(135deg, #670d10 0%, #092756 100%);
 }
 
+#root {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 
 h1 {

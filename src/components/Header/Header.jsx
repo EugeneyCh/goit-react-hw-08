@@ -4,16 +4,17 @@ import s from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { logoutThunk } from "../../redux/auth/operations";
-// import { selectIsLoggedIn, selectUser } from "../../redux/selectors";
-// import { logoutThunk } from "../../redux/authOperations";
+
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   return (
     <header>
-      <h2>Phonebook</h2>
-      {user.name && <h3>Welcome {user.name} !</h3>}
+      <div className={s.greetings}>
+        <h2>Phonebook</h2>
+        {user.name && <h3>Welcome {user.name} !</h3>}
+      </div>
       <nav className={s.nav}>
         <NavLink
           className={({ isActive }) => clsx(s.link, isActive && s.active)}
