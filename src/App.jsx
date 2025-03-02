@@ -31,7 +31,7 @@
 // export default App;
 
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import Home from "./pages/HomePage/Home";
 import Contacts from "./pages/ContactsPage/ContactsPage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
