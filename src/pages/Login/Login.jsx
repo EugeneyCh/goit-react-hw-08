@@ -25,7 +25,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = (values, options) => {
-    console.log(values);
+    // console.log(values);
     dispatch(loginThunk(values))
       .unwrap()
       .then((res) => {

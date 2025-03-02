@@ -1,14 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css";
-import { selectFilteredContacts } from "../../redux/contacts/selectors";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
-// import { selectFilteredContacts } from "../../redux/contactsSlice";
+import { selectFilteredContacts } from "../../redux/contacts/selectors";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contacts/operations";
 
 function ContactList() {
   const filteredContacts = useSelector(selectFilteredContacts);
-  console.log(filteredContacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    dispatch(fetchContacts({ signal: abortController.signal }));
+    return () => {
+      abortController.abort();
+    };
+  }, [dispatch]);
 
   return (
     <div>
@@ -23,7 +32,7 @@ function ContactList() {
               key={item.id}
               id={item.id}
               name={item.name}
-              phone={item.phone}
+              phone={item.number}
             />
           ))}
       </div>

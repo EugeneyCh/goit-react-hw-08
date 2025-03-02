@@ -50,3 +50,20 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkApi) => {
+    try {
+      const savedToken = thunkApi.getState().auth.token;
+      if (savedToken === null) {
+        return thunkApi.rejectWithValue("Token not present!");
+      }
+      setAuthHeader(savedToken);
+      const { data } = await api.get("/users/current");
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

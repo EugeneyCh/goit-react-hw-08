@@ -1,6 +1,5 @@
 import s from "./ContactForm.module.css";
 import * as Yup from "yup";
-import { nanoid } from "nanoid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
@@ -37,9 +36,8 @@ const ContactForm = () => {
   const phoneNumberFieldId = useId();
   const handleSubmit = (values, actions) => {
     const newContact = {
-      id: nanoid(),
       name: values.username,
-      phone: values.phoneNumber,
+      number: values.phoneNumber,
     };
 
     dispatch(addContact(newContact));
